@@ -60,6 +60,6 @@
      
 
 <p>
-  <a href="../01-accounts/organizations.md" style="float: left;">← Previous</a>
-  <a href="../01-accounts/sts.md" style="float: right;">Next →</a>
+  <a href="../01-accounts/iam.md" style="float: left;">← Previous [iam]</a>
+  <a href="../01-accounts/sts.md" style="float: right;">Next [sts] →</a>
 </p>
