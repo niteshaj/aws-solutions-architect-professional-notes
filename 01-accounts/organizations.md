@@ -56,7 +56,10 @@
             1. Remove the `FullAWSAccess` policy
             2. Add any services which should be allowed in a new policy
         - Allow lists are more secure, but they require more admin overhead
+
      
 
-
-[AWS Organizations](../01-accounts/organizations.md) &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; [STS](../01-accounts/sts.md)
+<p>
+  <a href="../01-accounts/organizations.md" style="float: left;">← Previous</a>
+  <a href="../01-accounts/sts.md" style="float: right;">Next →</a>
+</p>
