@@ -59,4 +59,4 @@
      
 
 
-[AWS Organizations](../01-accounts/organizations.md)                                                                                    [STS](../01-accounts/sts.md)
+[AWS Organizations](../01-accounts/organizations.md) &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; [STS](../01-accounts/sts.md)
