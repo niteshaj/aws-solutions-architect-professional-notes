@@ -1,11 +1,12 @@
 # AWS Organizations
 
-- Standard AWS account: it is an account which is not in an AWS Organization
 - We create an AWS Organization from a standard AWS account
-- The organization is not created in this account, we just use the account to create the organization. The standard account then becomes the **Management Account** (used to be called *Master Account*)
+- AWS Organization is a Global service
+- The main account is the **Management Account**, while other accounts are member accounts
 - Using the Management Account we can invite other accounts into the organization
 - When a standard account joins an organization, it will change to **Member Account** of that organization
 - Organizations have 1 Management Account and 0 or more Member Accounts
+- Member accounts can only be part of one organization
 - We can create a structure of AWS accounts in an organization. We can group accounts by things such as business units, function or development stage, etc.
 - This structure is hierarchical, it is an inverted tree
 - At the top of this tree is the root container of the organization (just a container within the organization, NOT to be confused with the root user)
@@ -55,3 +56,7 @@
             1. Remove the `FullAWSAccess` policy
             2. Add any services which should be allowed in a new policy
         - Allow lists are more secure, but they require more admin overhead
+     
+
+
+[AWS Organizations](../01-accounts/organizations.md)                                                                                    [STS](../01-accounts/sts.md)
