@@ -117,9 +117,10 @@
 
 - Allow us to influence EC2 instance placements, insuring that instances are closed together or not
 - There are 3 types of placements groups in AWS:
-    - **Cluster**: any instances in a single placement groups are physically close
-    - **Spread**: instances are all using different underlying hardware
-    - **Partition**: groups of EC2 instances which are spread apart on different host hardware
+    - **Cluster**: Packs instances close together inside an Availability Zone
+    - **Partition**: Spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions. 
+    - **Spread**: Places each instance on distinct hardware.
+    
 
 ### Cluster Placement Groups
 
@@ -139,29 +140,34 @@
     - Cluster placement groups offer 10 Gbps for single stream performance
     - Use cases: High performace, fast speeds, low latency
 
-### Spread Placement Groups
-
-- They offer the maximum possible availability and resiliency
-- They can span multiple AZs
-- Instances in the same spread placement group are located on different racks, having isolated networking and power supplies
-- There is a limit for 7 instances per AZ in case of spread placement groups. This is because each instance is a completely separate instance rack 
-- Considerations: <span style="color: #ff5733;">Important for EXAM!!!</span>
-    - Spread placement provides infrastructure isolation
-    - Hard limit: 7 instances per AZ
-    - We can not use dedicated instances or hosts
-    - Use cases: Small number of critical instances that need to be kept seperated from each other. May be mirrors of file server, or may be different domain controllers within an organization.
-
 ### Partition Placement Groups
 
-- Similar to spread placement groups
 - They are designed for situations when we need more than 7 instances per AZ but we still need separation
 - Can be created across multiple AZs in a region
 - At creation we specify the number of partition per AZ (max 7 per AZ)
 - Each partition has its own rack with isolated power and networking
 - We can launch as many instances as we need in a partition group. We can select the partition by hand or we can let EC2 decide on a partition for a new instance
-- Use cases for partition groups: HDFS, HBase, Cassandra, topology aware applications<span style="color: #ff5733;">Important for EXAM!!!</span>
-- Instances can be placed in a specific partition or we can let AWS to decide
 - Offer visibility in partitions and you can see which instance is in which partition.
+- Use cases for partition group
+    - Large distributed & replicated systems
+    - Hadoop, Cassandra, Kafka, HBase
+    - Fault isolation at rack level
+    - Topology aware application
+
+### Spread Placement Groups
+
+- They offer the maximum possible availability and resiliency
+- They can span multiple AZs
+- Instances in the same spread placement group are located on different racks, having isolated networking and power supplies
+- There is a limit for 7 instances per AZ. This is because each instance is a completely separate instance rack 
+- Considerations: <span style="color: #ff5733;">Important for EXAM!!!</span>
+    - Spread placement provides infrastructure isolation
+    - Hard limit: 7 instances per AZ
+    - We can not use dedicated instances or hosts
+    - Use cases:
+        - Critical small workloads
+        - Master nodes
+        - Licensing-sensitive applications
 
 ## EC2 Spot Instances
 
