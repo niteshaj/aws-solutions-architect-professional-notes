@@ -15,21 +15,42 @@
 
 ## Consolidated Billing
 
-- It is an important feature of AWS Organizations
-- The individual billing method of each account from the organization is removed, the member accounts pass their billing through the Management Account (**Payer Account**)
 - Using consolidated billing we get a single monthly bill. This covers the Management Account and all the Member Accounts of the Organization
-- When using organization reservation benefits and discounts are pooled, meaning the organization can benefit as a whole for the spending of each AWS account within the org
+- Pricing benefits from aggregated usage (volume discount for EC2, S3...) 
+- Shared reserved instances and Savings Plans discounts across accounts
 
 ## Best Practices
 
 - Have a single account into which users can log into and assume IAM roles in order to access other accounts from the org
 - The account with all the identities may be the Management Account or it can be another Member Account (*Login Account*)
 
+## AWS Account Organizational Unit Migration:
+
+- Remove the member account from the former organization [need root or IAM access to said member account and master account(s)]
+- Send an invite to the member account from the prospective organization
+- Accept the invite from the prospective organization upon the member account
+- Ensure the OrganizationAccountAccessRole is added to the member account
+
+
 ## `OrganizationAccountAccessRole`
 
 - This is an IAM role used to access the newly added/created account in an organization
 - This role will be created automatically if we create the account from an existing organization
 - This role has to be created manually in the member account if the account was invited into the organization
+
+# AWS Control Tower
+
+- Easy way to setup and govern a secure and compliant multi-account
+AWS environment based on best practices and using AWS OU to create
+accounts
+- automates setup of environments in a few clicks
+- automates ongoing policy management using guard rails:
+    - SCP: preventative
+    - AWS Config: detective
+    - CloudTrail Logging: detective
+- detects policy violations and remediates them
+- monitor compliance through dashboards
+
 
 # Service Control Policies (SCP)
 

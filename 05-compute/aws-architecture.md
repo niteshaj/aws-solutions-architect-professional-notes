@@ -77,7 +77,7 @@ These **do not belong to a single region**:
 | **WAF (global mode)** | Protects CloudFront                   |
 | **Shield**            | Global DDoS protection                |
 
-**Exam Trap**
+**Exam Trap**  
 ❌ *“IAM is regional”* → **WRONG**
 
 ---

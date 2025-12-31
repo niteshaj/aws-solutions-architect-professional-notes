@@ -1,4 +1,4 @@
-# STS
+# STS (Secure Token Service)
 
 - Allows to assume roles across different accounts or same accounts
 - Generates temporary credentials (`sts:AssumeRole*`)
@@ -31,3 +31,9 @@
     - Revoke all existing sessions, by applying an `AWSRevokeOlderSessions` inline policy to the role. This will apply to all existing sessions, sessions created afterwards will not be affected
     - We can not manually revoke credentials!
 
+
+
+<p>
+  <a href="../01-accounts/organizations.md" style="float: left;">← Previous [organizations]</a>
+  <a href="../01-accounts/policies.md" style="float: right;">Next [policies] →</a>
+</p>

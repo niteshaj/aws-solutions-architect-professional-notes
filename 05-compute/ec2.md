@@ -1,6 +1,6 @@
 # EC2
 
-## EC2 Purchase Options (Launch Types)
+## 1. EC2 Purchase Options (Launch Types)
 
 - **On-Demand (default)**:
     - On-demand instances are isolated but multiple customer instances run on a shared hardware
@@ -53,7 +53,7 @@
     - Dedicated instances are common in industries where we cannot share hardware
     - No extra capacity management required from us
 
-## Capacity Reservations (Read about it)
+## 2. Capacity Reservations (Read about it)
 
 - Reserve capacity for your EC2 instances in a specific Availability Zone.
 - Capacity reservation is different compared to reserved instances
@@ -76,7 +76,7 @@
 - General compute savings plan currently apply to EC2, Fargate and Lambda
 - Resource usage consumes savings plan commitment at the reduced saving plans rate, beyond commitment on-demand billing is used
 
-## EC2 Networking
+## 3. EC2 Networking
 
 - Instances are created with a primary ENI, this can not be removed or detached from the instance
 - Secondary ENIs can be added to an instance which can be in different subnets (NOT AZs!)
@@ -96,7 +96,7 @@
 - Source/destination checks: each ENI has a flag which can be disabled
 - By default source/destination check is enabled, if disabled the ENI can process traffic which was not created by the EC2 instances or traffic for which the EC2 instance is not the destination
 
-## Bootstrapping and AMI Baking
+## 4. Bootstrapping and AMI Baking
 
 - Bootstrapping:
     - Is a way of building EC2 instances in a flexible way. Isn't fast, but super flexible.
@@ -113,7 +113,7 @@
     - AMI baking and bootstrappig are not mutually exclusive.
     - <span style="color: orange;">If there are any exam question related to time taken to launch the EC2 instance, think of AMI baking.</span>
 
-## EC2 Placement Groups
+## 5. EC2 Placement Groups
 
 - Allow us to influence EC2 instance placements, insuring that instances are closed together or not
 - There are 3 types of placements groups in AWS:
@@ -122,7 +122,7 @@
     - **Spread**: Places each instance on distinct hardware.
     
 
-### Cluster Placement Groups
+### 5.1. Cluster Placement Groups
 
 - Used for highest possible performance
 - Best practice is to launch all of the instances at the same time which will be part of the placement group. This ensures that AWS allocates capacity in the same location
@@ -140,7 +140,7 @@
     - Cluster placement groups offer 10 Gbps for single stream performance
     - Use cases: High performace, fast speeds, low latency
 
-### Partition Placement Groups
+### 5.2. Partition Placement Groups
 
 - They are designed for situations when we need more than 7 instances per AZ but we still need separation
 - Can be created across multiple AZs in a region
@@ -154,7 +154,7 @@
     - Fault isolation at rack level
     - Topology aware application
 
-### Spread Placement Groups
+### 5.3. Spread Placement Groups
 
 - They offer the maximum possible availability and resiliency
 - They can span multiple AZs
@@ -169,10 +169,10 @@
         - Master nodes
         - Licensing-sensitive applications
 
-## EC2 Spot Instances
+## 6. EC2 Spot Instances
 
 - Can get a discount of up to 90% compared to On Demand instances
-- We can define a max spot price and get he instance of our price is bigger than the current price
+- We can define a max spot price.
 - If the current spot price goes beyond our max price, we can choose to stop or terminate the instance within 2 minutes grace period
 - If we don't want our spot instance to be reclaimed by AWS, we can use a **Spot Block**
     - We can block a spot instance during a specified time frame (1 to 6 hours) without interruptions
@@ -188,11 +188,13 @@
     - One time request: as soon as the request is fulfilled, the request will go away
     - Persistent request: the number of instances is attempted to be kept even if some instances are reclaimed, meaning that the request will not go away as soon as it is completed first time
 - Canceling a spot instances: in order ot cancel a spot instance, it has to be in an **open**, **active** or **disabled** state
-- Spot instance states:
-    ![Spot instance states](images/spot_request_states.png)
 - Cancelling a spot request, it will not terminate the instances themselves. In order to terminate instances, first we have to terminate the spot request, if there is one active
+- Spot instance states:
 
-## Spot Fleets
+    <img src="images/spot_request_states.png" width=400/>
+
+
+## 7. Spot Fleets
 
 - Spot Fleet - set of spot instances + (optional) on-demand instances
 - The spot fleet will try to meet the target capacity with price constraints
@@ -204,3 +206,10 @@
     - **diversified**: distribute instances across all pools
     - **capacityOptimized**: launch instances based on the optimal capacity for the number of instances
 - Spot fleets allow us to automatically request spot instances with the lowest price
+
+
+
+<p>
+  <a href="../05-compute/aws-architecture.md" style="float: left;">← Previous [aws-architecture]</a>
+  <a href="../05-compute/elb.md" style="float: right;">Next [elb] →</a>
+</p>
