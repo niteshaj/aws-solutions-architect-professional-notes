@@ -3,14 +3,10 @@
 ## EC2 Purchase Options (Launch Types)
 
 - **On-Demand (default)**:
-    - Average of anything, no specific cons or pros
     - On-demand instances are isolated but multiple customer instances run on a shared hardware
-    - Multiple instance types (different sizes) can run on the same EC2 hosts, consuming a different allocation of resources
     - Billing: per-second billing while an instance is running, if a system is shut down, we don't get billed for that
-    - Associated resources such as storage consume capacity, we will be billed regardless the instance is running or it is stopped
     - We should always start the evaluation process using on-demand
     - With on-demand there are no interruptions. We start an instance and it should run as long as we don't decide to shut it down
-    - In case of resource shortage the reserved instances receive highest priority, consider them instead of on-demand in case of business critical systems
     - On-demand offers predictable pricing without any discount options
     - If you are unsure of duration or type of workload, On-demand should be considered.
 - **Spot instances**:
@@ -18,23 +14,20 @@
     - Spot pricing is selling EC2 capacity at lower price in order make use of spare EC2 capacity on the host machines
     - If the spot price goes above selected maximum price, our instances are terminated
     - We should never use the spot instances for workloads which can't tolerate interruptions
-    - Anything which can tolerate interruptions and can be re-triggered is good for spot
-- **Standard Reserved Instances**:
-    - On-demand is generally used for unknown or short term usage, reserved is for long term consistent usage of EC2
+- **Reserved Instances**:
+    - Reserved is for long term consistent usage of EC2
     - Reservations:
         - They are commitments that we will use a instance/set of instances for a longer amount of time
         - The effect of a reservation is to reduce the per second cost or remove it entirely
         - Reservation needs to be planned in advance
         - We pay for unused reservations
         - Reservations can be bought for a specific type of instances. They can be region and AZ locked
-        - Az locked instances reserve EC2 capacity
-        - If an instance is reserved for a region,it doesn't reserve capacity but it can benefit any instances launched in any AZ in that region.
-        - Reservations can have a partial effects in a sense the we can get discounts for larger instances compared to which the reservation was purchased
+        - If an instance is reserved for a region, it doesn't reserve capacity but it can benefit any instances launched in any AZ in that region.
         - We can commit to reservations of 1 year of 3 years
-        - Payment structures:
-            - No upfront: we pay per second a lower amount of fee compared to on-demand. We pay even if the instance is not used
-            - All upfront: the whole cost of the 1 or 3 years. No second per fee payment will be required. Offer the greatest discount
+        - Payment structures:            
+            - All upfront: the whole cost of the 1 or 3 years. Offer the greatest discount
             - Partial upfront: we pay a reduced fee upfront for smaller per second usage
+            - No upfront: we pay per second a lower amount of fee compared to on-demand. We pay even if the instance is not used
     - Reserved instances are good for components which have known usage, require consistent access for compute for a long term basis
 - **Scheduled Reserved Instances**:
     - Great for long term requirements which does not run constantly, ex. batch processing running 5 hours/day
@@ -44,9 +37,7 @@
         - Minimum purchase per year is 1200 hours, minimum commitment is 1 year
 - **Dedicated Hosts**:
     - They are EC2 hosts allocated to a customer entirely
-    - They are hosts designed for specific instances, ex. A, C, R, etc.
     - Hosts come with all of the resources we expected from a physical machine: number of cores and CPUs, memory, local storage and connectivity
-    - We pay for the host, we don't pay anymore for instance usage per second in case we launch instances on the host
     - We have a capacity for a dedicated hosts, we can launch different sizes of instances based on the available capacity
     - Reasons for dedicated hosts: we want to use software which is licensed for number of cores or number of sockets
     - Host affinity: feature of dedicated hosts. Links instances to hosts, if we stop and start the instance, it will remain on the same host
@@ -55,19 +46,16 @@
         - We have to manage our capacity in terms of under utilization of the host
         - We have a limited capacity in terms of how many EC2 instances we can launch
 - **Dedicated Instances**:
-    - Our instances run on an EC2 host with other instances of ours. The host is not shared with other AWS customers, no other customers will use the same hardware
-    - We don't pay for the host, nor do we share the host
+    - Instances run on an EC2 host, this host is not shared with other AWS customers, no other customers will use the same hardware
     - There are some extra fees for this kind of purchase option:
         - One-of hourly fee for any regions in which we are using dedicated instances
         - There is a fee for the dedicated instances themselves
     - Dedicated instances are common in industries where we cannot share hardware
     - No extra capacity management required from us
 
-## Capacity Reservations
+## Capacity Reservations (Read about it)
 
-- AWS prioritizes any scheduled commitment for delivering EC2 capacity
-- After scheduled instances on-demand is prioritized
-- The leftover capacity can be used for spot instances
+- Reserve capacity for your EC2 instances in a specific Availability Zone.
 - Capacity reservation is different compared to reserved instances
 - Regional reservation 
     - Provides a billing discount for valid instances launched in any AZ in that region
@@ -115,11 +103,10 @@
     - Flexible, automated building of EC2 instances
     - We provision EC2 instances and add a script to the user data
     - CloudInit runs the script on the instance when the instance is launched
-    - This process can longer time, although it is very flexible
+    - This process may take longer time, although it is very flexible
     - When finished, ec2 instance is ready to use.
 - AMI Baking:
-    - We front-load the time and effort required to configure an instance
-    - Our aim is to get the instance ready or almost ready at this point of the process. We can use bootstrapping to install the software and make the instance ready.
+    - AMI is to get the instance ready or almost ready at this point of the process. We can use bootstrapping to install the software and make the instance ready.
     - We launch an EC2 instance and perform the necessary tasks from which we can create an AMI
     - We can use the AMI to deploy many instances quickly.
     - The tradeoff is, it harder to change the AMI.
