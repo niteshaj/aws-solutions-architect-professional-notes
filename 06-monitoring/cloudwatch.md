@@ -7,27 +7,29 @@
 - CloudWatch stores data in a persistent way
 - Data can be viewed from the console, CLI or API, but also CloudWatch also provides dashboards and anomaly detection
 - CloudWatch Alarms: react to metrics, can be used to notify or to perform actions
-- Instances in public subnet can connect to cloudwatch using Internet gateway and the instances in the private subnets can connect to the cloudwatch usig Interface Endpoint.
+- Instances in public subnet can connect to cloudwatch using Internet gateway and the instances in the private subnets can connect to the cloudwatch using Interface Endpoint.
 
 ## CloudWatch - Data
 
-- **Namespace**: container for metrics e.g. AWS/EC2 for EC2 NS, AW/Lambda for lambda NS. Its possible to have same mertic name for different service, NS helps to segregate them.
-- **Data point**: timestamp, value, unit of measure (optional)
-- **Metric**: time ordered set of data point. Example of builtin metrics: `CPUUtilization`, `NetworkIn`, `DiskWriteBytes` for EC2
-- Every metric has a `MetricName` and a namespace e.g. CPUUtilization for AWS/EC2
-- **Dimension**: name/value pair, example: a dimension is the way for `CPUUtilization` metric to be separated from one instance to another
-- Dimensions can be used to aggregate data, example aggregate data for all instances for an ASG
-- **Resolution**: standard (60 second granularity) or high (1 second granularity)
-- **Metric resolution**: minimum period that we can get one particular data point for
-- Data retention:
-    - sub 60s granularity is retained for 3 hours
-    - High resolution can be measured but they cost more. Resolution determines the minimum period which ca be specified and get a valid value. Standard (60 Sec) .. High (1 Sec)
-    - 60s granularity retained for 15 days
-    - 5 min retained for 63 days
-    - 1 hour retained for 455 days
-- As data ages, its aggregated and stored for longer period of time with less resolution
-- Statistics: get data over a period and aggregate it in a certain way
-- Percentile: relative standing of a value within the dataset
+- **Namespace**: A namespace is a container for CloudWatch metrics. There is no default namespace. You must specify a namespace for each data point you publish to CloudWatch. The AWS namespaces typically use the following naming convention: AWS/**service**. For example, Amazon EC2 uses the AWS/EC2 namespace. 
+- **Metric**:  A metric represents a time-ordered set of data points that are published to CloudWatch. Example of builtin metrics: `CPUUtilization`, `NetworkIn`, `DiskWriteBytes` for EC2. Every metric has a `MetricName`, a namespace and zero or more dimensions. e.g. CPUUtilization for AWS/EC2
+    - **Time stamps**: Each metric data point must be associated with a time stamp. The time stamp can be up to two weeks in the past and up to two hours into the future. If you do not provide a time stamp, CloudWatch creates a time stamp for you based on the time the data point was received.
+    **Metrics retention:**
+    - 3 hours: High-resolution custom metrics with a period of less than 60 seconds are retained for 3 hours
+    - 15 days: Data points with a period of 1 minute are retained for 15 days.
+    - 63 days: Data points with a period of 5 minutes are retained for 63 days. 
+    - 15 months: Data points with a period of 1 hour are available for 15 months (455 days)
+    - As data ages, its aggregated and stored for longer period of time with less resolution
+- **Dimension**: A dimension is a name/value pair that is part of the identity of a metric, example: a dimension is the way for `CPUUtilization` metric to be separated from one instance to another.
+    - AWS services, such as Amazon EC2, CloudWatch can aggregate data across dimensions.
+    - CloudWatch does not aggregate across dimensions for your custom metrics.
+- **Resolution**: standard (60 second granularity) or high (1 second granularity). Every PutMetricData call for a custom metric is charged, so calling PutMetricData more often on a high-resolution metric can lead to higher charges. 
+    - **Metric resolution**: minimum period that we can get one particular data point for
+- **Statistics**: Statistics are metric data aggregations over specified periods of time. Aggregations are made using the namespace, metric name, dimensions, and the data point unit of measure, within the time period you specify.
+    - **Units**: Each statistic has a unit of measure. Example units include Bytes, Seconds, Count, and Percent. You can specify a unit when you create a custom metric. If you do not specify a unit, CloudWatch uses None as the unit.
+    - **Periods**:  A period is the length of time associated with a specific Amazon CloudWatch statistic. Periods are defined in numbers of seconds, and valid values for period are 1, 5, 10, 30, or any multiple of 60. When you retrieve statistics, you can specify a period, start time, and end time.
+    - **Aggregation**: Amazon CloudWatch aggregates statistics according to the period length that you specify when retrieving statistics. Amazon CloudWatch doesn't differentiate the source of a metric. If you publish a metric with the same namespace and dimensions from different sources, CloudWatch treats this as a single metric. This can be useful for service metrics in a distributed, scaled system. For example, all the hosts in a web server application could publish identical metrics representing the latency of requests they are processing. CloudWatch treats these as a single metric, allowing you to get the statistics for minimum, maximum, average, and sum of all requests across your application.
+- **Percentile**: A percentile indicates the relative standing of a value in a dataset. For example, the 95th percentile means that 95 percent of the data is lower than this value and 5 percent of the data is higher than this value. Percentiles help you get a better understanding of the distribution of your metric data.
 
 ## CloudWatch Alarms
 
