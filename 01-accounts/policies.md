@@ -92,3 +92,9 @@
     - Some AWS CLI commands (not all) contain `--dry-run` option to simulate API calls. This can be used to test permissions.
     - If the command is successful, you'll get the message: `Request would have succeeded, but DryRun flag is set`
     - Otherwise, you'll be getting the message: `An error occurred (UnauthorizedOperation) when calling the {policy_name} operation`
+
+
+<p>
+  <a href="../01-accounts/sts.md" style="float: left;">← Previous [STS]</a>
+  <a href="../01-accounts/ram.md" style="float: right;">Next [AWS Resource Access Manager] →</a>
+</p>

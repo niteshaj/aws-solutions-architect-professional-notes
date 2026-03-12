@@ -26,3 +26,8 @@
 - Never write IAM credentials in your code. **EVER**
 - Never use the ROOT account except for initial setup
 - It's best to give users the minimal amount of permissions to perform their job
+
+<p>
+  <a href="../01-accounts/mfa.md" style="float: left;">← Previous [MFA]</a>
+  <a href="../01-accounts/organizations.md" style="float: right;">Next [AWS Organizations] →</a>
+</p>

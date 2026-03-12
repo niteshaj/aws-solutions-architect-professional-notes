@@ -81,6 +81,6 @@ accounts
      
 
 <p>
-  <a href="../01-accounts/iam.md" style="float: left;">← Previous [iam]</a>
-  <a href="../01-accounts/sts.md" style="float: right;">Next [sts] →</a>
+  <a href="../01-accounts/iam.md" style="float: left;">← Previous [IAM]</a>
+  <a href="../01-accounts/sts.md" style="float: right;">Next [STS] →</a>
 </p>

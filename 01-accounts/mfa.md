@@ -7,3 +7,7 @@
     - **Inherent**: something we are, example: fingerprint, face, voice, iris
     - **Location**: a location (physical) or which network we are connected to (corporate wifi)
 - More factors means more security, harder to bypass by an intruder
+
+<p>
+  <a href="../01-accounts/iam.md" style="float: right;">Next [IAM] →</a>
+</p>

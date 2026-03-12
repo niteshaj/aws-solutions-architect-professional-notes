@@ -34,6 +34,6 @@
 
 
 <p>
-  <a href="../01-accounts/organizations.md" style="float: left;">← Previous [organizations]</a>
-  <a href="../01-accounts/policies.md" style="float: right;">Next [policies] →</a>
+  <a href="../01-accounts/organizations.md" style="float: left;">← Previous [AWS Organizations]</a>
+  <a href="../01-accounts/policies.md" style="float: right;">Next [Policies] →</a>
 </p>

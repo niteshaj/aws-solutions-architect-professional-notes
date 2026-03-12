@@ -37,3 +37,9 @@
 - Participants can provision services into the shared subnets, can read an reference network objects but can not modify or delete the subnets
 - Resources created by a participant account will not be visible for other participants or by the VPC owner account
 - Resources created by a participant account can be accessed from other resources created by other participant accounts because they are on the same network
+
+
+<p>
+  <a href="../01-accounts/policies.md" style="float: left;">← Previous [Policies]</a>
+  <a href="../01-accounts/service-quotas.md" style="float: right;">Next [AWS Service Quotas] →</a>
+</p>
