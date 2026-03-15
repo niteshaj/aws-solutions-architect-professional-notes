@@ -33,10 +33,10 @@
 
 ## CloudWatch Alarms
 
-- Alarm: watches a metric over a period of time
+- Alarm: Watches a single metric over a specified time period, and performs one or more specified actions, based on the threshold over time.
 - States: `ALARM` or `OK` based on the value of a metric against a threshold over time
 - Alarms can be configured with one or more actions, which can initiate actions on our behalf. Actions can be: send notification to an SNS topic, attempt an auto scaling policy modification or use Event Bridge to integrate with other services
-- High resolution metrics can have high resolution alarms
+- High resolution metrics can have high resolution alarms. There is a higher charge for high-resolution alarms. 
 
 ## CloudWatch Logs
 
